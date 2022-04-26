@@ -16,6 +16,6 @@ jobs:
         with:
           project_name: atul73cx/ast-advanced-lab
           cx_tenant: atul_sharma_gst
-          base_uri: https://ast.checkmarx.net 
+          base_uri: https://ast.checkmarx.net
           cx_client_id: ${{ secrets.CLIENT_ID }}
           cx_client_secret: ${{ secrets.SECRET }}
