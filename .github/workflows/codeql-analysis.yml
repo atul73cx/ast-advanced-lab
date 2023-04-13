@@ -3,12 +3,7 @@
 name: Checkmarx Sarif Integration
 
 # Controls when the workflow will run
-on:
-  pull_request:
-    types: [opened, reopened, synchronize]
-    branches:
-      - master
-      - main
+on: [push,pull_request,workflow_dispatch]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
