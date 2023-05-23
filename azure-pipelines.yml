@@ -1,29 +1,22 @@
-# Docker
-# Build a Docker image
-# https://docs.microsoft.com/azure/devops/pipelines/languages/docker
+pool:
+  name: Azure Pipelines
 
-trigger:
-- main
+jobs:
+- job: Test
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  # - task: PowerShell@2
+  #   env:
+  #     CX_APIKEY: $(CX_APIKEY)
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: './cx.exe scan create -s . --project-name myadotest --branch main --debug'
 
-resources:
-- repo: self
-
-variables:
-  tag: '$(Build.BuildId)'
-
-stages:
-- stage: Build
-  displayName: Build image
-  jobs:
-  - job: Build
-    displayName: Build
-    pool:
-      vmImage: ubuntu-latest
-    steps:
-    - task: Docker@2
-      displayName: Build an image
-      inputs:
-        command: build
-        dockerfile: '$(Build.SourcesDirectory)/Dockerfile'
-        tags: |
-          $(tag)
+  - task: Checkmarx AST@2
+    inputs:
+      CheckmarxService: 'EU PROD21'
+      projectName: '$(Build.Repository.Name)'
+      branchName: '$(Build.SourceBranchName)'
+      tenantName: 'cxast_rnd_projects_scans'
+      additionalParams: '--debug'
