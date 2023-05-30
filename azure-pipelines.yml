@@ -18,5 +18,5 @@ jobs:
       CheckmarxService: 'CxONE'
       projectName: '$(Build.Repository.Name)'
       branchName: '$(Build.SourceBranchName)'
-      tenantName: 'cxast_rnd_projects_scans'
+      tenantName: ''
       additionalParams: '--debug'
