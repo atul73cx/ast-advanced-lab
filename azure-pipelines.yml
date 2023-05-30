@@ -19,4 +19,4 @@ jobs:
       projectName: '$(Build.Repository.Name)'
       branchName: '$(Build.SourceBranchName)'
       tenantName: 'cxast_rnd_projects_scans'
-      additionalParams: '--debugg'
+      additionalParams: '--debug'
