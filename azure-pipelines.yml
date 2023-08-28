@@ -1,0 +1,22 @@
+pool:
+  name: Azure Pipelines
+
+jobs:
+- job: Test
+  pool:
+    vmImage: 'windows-2019'
+  steps:
+  # - task: PowerShell@2
+  #   env:
+  #     CX_APIKEY: $(CX_APIKEY)
+  #   inputs:
+  #     targetType: 'inline'
+  #     script: './cx.exe scan create -s . --project-name myadotest --branch main --debug'
+
+  - task: Checkmarx AST@2
+    inputs:
+      CheckmarxService: 'CxONE'
+      projectName: '$(Build.Repository.Name)'
+      branchName: '$(Build.SourceBranchName)'
+      tenantName: ''
+      additionalParams: '--debug'
