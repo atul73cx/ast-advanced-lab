@@ -37,7 +37,7 @@ class Login
 
             if (result.next()) {
                 loggedIn = true;
-                // Successfully logged in and redirect to user profile page
+                // Successfully logged in and redirect to user profile pages
             
             } else {
              // Auth failure - Redirect to Login Page
